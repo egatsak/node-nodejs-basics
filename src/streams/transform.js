@@ -8,7 +8,7 @@ const transform = async () => {
         .split("")
         .reverse()
         .join("");
-      this.push(reversedData);
+      this.push(reversedData + "\n");
       callback();
     }
   });
