@@ -1,16 +1,16 @@
 import { Worker } from "worker_threads";
 import os from "os";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
+import { dirname, resolve as pathResolve } from "path";
 
 const FIRST_ARG = 10;
 
-const runService = async (workerData) => {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
+const runService = async (workerData) => {
   return new Promise((resolve, reject) => {
-    const worker = new Worker(`${__dirname}/worker.js`, {
+    const worker = new Worker(pathResolve(__dirname, "worker.js"), {
       workerData
     });
 

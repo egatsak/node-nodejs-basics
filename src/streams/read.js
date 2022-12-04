@@ -1,12 +1,12 @@
-import { fileURLToPath } from "url";
-import { dirname } from "path";
 import { createReadStream } from "fs";
+import { fileURLToPath } from "url";
+import { resolve, dirname } from "path";
 
 const read = async () => {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
   const stream = createReadStream(
-    `${__dirname}/files/fileToRead.txt`
+    resolve(__dirname, "files", "fileToRead.txt")
   );
   stream.pipe(process.stdout);
 };

@@ -1,14 +1,14 @@
 import * as crypto from "crypto";
 import * as fs from "fs/promises";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
+import { dirname, resolve } from "path";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const calculateHash = async () => {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = dirname(__filename);
   try {
     const data = await fs.readFile(
-      `${__dirname}/files/fileToCalculateHashFor.txt`
+      resolve(__dirname, "files", "fileToCalculateHashFor.txt")
     );
     const hashSum = crypto.createHash("sha256");
     hashSum.update(data);

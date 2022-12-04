@@ -1,4 +1,4 @@
-import { sep, dirname } from "path";
+import { sep, dirname, resolve } from "path";
 import { release, version } from "os";
 import { createServer as createServerHttp } from "http";
 import { fileURLToPath } from "url";
