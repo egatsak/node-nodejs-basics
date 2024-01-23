@@ -1,14 +1,14 @@
-import { Worker } from "worker_threads";
 import os from "os";
-import { fileURLToPath } from "url";
-import { dirname, resolve as pathResolve } from "path";
+import {Worker} from "worker_threads";
+import {fileURLToPath} from "url";
+import {dirname, resolve as pathResolve} from "path";
 
 const FIRST_ARG = 10;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const runService = async (workerData) => {
+const runService = async workerData => {
   return new Promise((resolve, reject) => {
     const worker = new Worker(pathResolve(__dirname, "worker.js"), {
       workerData
@@ -18,7 +18,7 @@ const runService = async (workerData) => {
 
     worker.on("error", reject);
 
-    worker.on("exit", (code) => {
+    worker.on("exit", code => {
       if (code !== 0) {
         reject(new Error(`stopped with ${code} exit code`));
       }
@@ -35,16 +35,16 @@ const performCalculations = async () => {
   }
 
   Promise.allSettled(promises)
-    .then((result) => {
-      return result.map((item) => {
+    .then(result => {
+      return result.map(item => {
         if (item.status === "fulfilled") {
-          return { status: "resolved", data: item.value };
+          return {status: "resolved", data: item.value};
         } else {
-          return { status: "error", data: null };
+          return {status: "error", data: null};
         }
       });
     })
-    .then((res) => console.log(res));
+    .then(res => console.log(res));
 };
 
 await performCalculations();

@@ -1,5 +1,5 @@
-import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
+import {fileURLToPath} from "url";
+import {dirname, resolve} from "path";
 import * as fs from "fs";
 import * as zlib from "zlib";
 import * as fsPromises from "fs/promises";

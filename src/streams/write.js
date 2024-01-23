@@ -7,7 +7,8 @@ const __dirname = dirname(__filename);
 
 const write = async () => {
   const writable = createWriteStream(
-    resolve(__dirname, "files", "fileToWrite.txt")
+    resolve(__dirname, "files", "fileToWrite.txt"),
+    { flags: "a" }
   );
   process.stdout.write("Enter data:\n");
   process.stdin.on("data", (data) => {

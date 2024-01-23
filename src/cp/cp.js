@@ -9,7 +9,7 @@ const spawnChildProcess = async (args) => {
   const child = fork(resolve(__dirname, "files", "script.js"), [
     ...args.slice(2)
   ]);
-
+  console.log(process.pid);
   child.on("message", (message) => {
     console.log("Message from child:", message.toString());
   });

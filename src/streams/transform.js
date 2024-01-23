@@ -13,6 +13,7 @@ const transform = async () => {
       callback();
     }
   });
+
   try {
     await pipeline(process.stdin, reverseStream, process.stdout);
   } catch (e) {

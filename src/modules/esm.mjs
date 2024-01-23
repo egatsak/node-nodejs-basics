@@ -1,9 +1,11 @@
-import { sep, dirname, resolve } from "path";
-import { release, version } from "os";
-import { createServer as createServerHttp } from "http";
-import { fileURLToPath } from "url";
+import {sep, dirname} from "node:path";
+import {release, version} from "node:os";
+import {createServer as createServerHttp} from "node:http";
+import {fileURLToPath} from "node:url";
+import {createRequire} from "node:module";
+
 import "./files/c.js";
-import { createRequire } from "module";
+
 const require = createRequire(import.meta.url);
 
 const __filename = fileURLToPath(import.meta.url);
@@ -39,4 +41,4 @@ myServer.listen(PORT, () => {
   console.log("To terminate it, use Ctrl+C combination");
 });
 
-export { myServer, unknownObject };
+export {myServer, unknownObject};

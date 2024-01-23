@@ -1,7 +1,7 @@
-import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
-import * as fsPromises from "fs/promises";
+import {fileURLToPath} from "url";
+import {dirname, resolve} from "path";
 import * as fs from "fs";
+import * as fsPromises from "fs/promises";
 import * as zlib from "zlib";
 
 const decompress = async () => {
@@ -11,9 +11,7 @@ const decompress = async () => {
 
   fs.createReadStream(resolve(filePath, "archive.gz"))
     .pipe(zlib.createGunzip())
-    .pipe(
-      fs.createWriteStream(resolve(filePath, "fileToCompress.txt"))
-    )
+    .pipe(fs.createWriteStream(resolve(filePath, "fileToCompress.txt")))
     .on("finish", async () => {
       await fsPromises.rm(resolve(filePath, `archive.gz`));
       console.log("Decompression done!");
